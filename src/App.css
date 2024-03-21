@@ -1,42 +1,209 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+
+/*ana sayfa css*/
+ .home{
+  width:1350px;
+  height:100vh;
+  display:flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  background-size:cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  align-items: center;
+}
+.logo{
+  width: 10%;
+}
+.text{
+  color:white;
+  font-size: 30px;
+  margin-top:0.2rem;
+  font-family:"Courier New", Courier, monospace;}
+.buton{
+  color: black;
+  background-color: yellow;
+  align-items: center;
+  border-radius: 50px;
+  width: 120px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  text-align: center;
+  margin-top:0.2rem;
+  margin-bottom: 0.2rem;
+  
+}
+.slogan{
+  font-family:"Brush Script MT", cursive;
+  font-style:oblique;
+  color:yellow;
+  font-size: 25px;
+}
+
+/*mainpage css*/
+.icons{
+  width: 100%;
+  height: 8vh;
+display: flex;
+justify-content: center;
+margin:1rem;
+}
+.first-icons{
+  padding-left:0.5rem;
+  padding-right:0.5rem ;
+  color: black;
+}
+
+.sipariş{
+ width: 80%;
+ height:60vh;
+display:flex;
+margin: auto;
+
+
+}
+
+.left{
+ width: 50%;
+  background-size:cover;
+  background-position: left;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  padding-left: 2rem;
+}
+.left p{
+  font-size: 20px;
+  color:white
+  
+}
+.left h1{
+  color:white
+}
+.right{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  
+  }
+.burger{
+  border-radius: 10px;
+  margin-left: 2rem;
+  height: 30vh;
+  background-size: cover;
+  padding-left: 1rem;
+}
+.burger h2{
+  color:white;
+  font-size:large;
+  
+}
+.kurye{
+  border-radius: 10px;
+  margin-left: 2rem;
+  height: 30vh;
+  background-size: cover;
+  padding-left: 1rem;
+}
+
+.siparişButonu{
+  width: 100px;
+  border-radius: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+/*last section css*/
+
+.last-section{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+}
+.foods{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  width: 100%;
+  height: 70vh;
+ 
+ align-content: center;
+ 
+}
+.last-icons{
+  width: 100%;
+  font-size:small;
+  color:black;
+ 
+ 
+}
+.icon-buttons{
+  border-radius:50px;
+  width:15%;
+  height: 10vh;
+  
+  
+ 
+}
+
+
+
+.food1{
+  width: 30%;
+ background-color:beige;
+  background-repeat: no-repeat;
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.food2{
+  width: 30%;
+ background-color:beige;
+  background-repeat: no-repeat;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.food3{
+  width: 30%;
+ background-color:beige;
+  background-repeat: no-repeat;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/*footer css*/
+.footer{
+  padding-top:3rem;
+ color:white;
+  width: 100%;
+  display: flex;
+justify-content: space-between;
+background-color: black;
 }
-
-.card {
-  padding: 2em;
+.leftSide img{
+  padding-right: 1rem;
 }
+.leftSide{
+  padding-left: 5rem;
+  color:white;
+  width: 40%;
+}
+.leftSide h2{
+  font-size: 40px;
+  margin:0.5rem;
+}
+.middle{
+  color:white;
+  width: 40%;
+}
+.rightSide{
+  color:white;
+  width: 30%;
+  padding-right: 0;
+}
+.rightSide img{
+width: 30%;
+}
+.footer p{
+  justify-content: left;
+  text-align: left;
 
-.read-the-docs {
-  color: #888;
 }
