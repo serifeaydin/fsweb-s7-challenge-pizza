@@ -1,21 +1,31 @@
 import React from 'react'
 import './App.css'
-import {BrowserRouter as Router,Route} from "react-router-dom";
-import Home from './components/Home';
-import Footer from './components/Footer';
-import MainPage from './components/MainPage';
+
+import {BrowserRouter, Route,Switch} from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import OrderPage from './pages/OrderPage';
+import SuccessPage from './pages/SuccessPage';
+import { useEffect } from 'react';
+
 
 
 function App() {
+  useEffect(()=>{},[]);
+
+  
+
   return (
     <div className='App'>
-    <Router>
-    <Home/>
-    <MainPage/>
-      
-     <Footer/>
-      
-     </Router>
+    
+
+<Switch>
+  <Route path="/" exact ><HomePage/></Route>
+  <Route path="/OrderPage"  exact ><OrderPage/></Route>
+  <Route path="/SuccessPage"  exact ><SuccessPage/></Route>
+</Switch>
+
+ 
+ 
     </div>
   );
     

@@ -156,16 +156,19 @@ margin: auto;
  background-color:beige;
   background-repeat: no-repeat;
   text-align: center;
+  color:black;
 }
 .food2{
   width: 30%;
  background-color:beige;
   background-repeat: no-repeat;
+  color:black;
 }
 .food3{
   width: 30%;
  background-color:beige;
   background-repeat: no-repeat;
+  color:black;
 }
 
 
@@ -205,5 +208,37 @@ width: 30%;
 .footer p{
   justify-content: left;
   text-align: left;
+
+}
+
+
+/*orderpage css */
+.logo-footer{
+  flex-direction: column;
+ text-align: center;
+ font-size: 20px;
+ background-color: red;
+ width: 100%;
+}
+
+.form-banner{
+  display: flex;
+  justify-content: center;
+ width: 100%;
+ 
+}
+.form-banner img{
+  width: 30%;
+  height:auto;
+}
+
+.order-navbar{
+  text-align: center;
+  margin: 2rem;
+  
+}
+.order-navbar-link{
+ color:black;
+  padding-right: 0.5rem;
 
 }
