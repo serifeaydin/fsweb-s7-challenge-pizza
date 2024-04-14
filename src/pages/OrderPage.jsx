@@ -5,13 +5,14 @@ import { Link } from "react-router-dom";
 import Order from "../components/Order";
 import Footer from "../components/Footer";
 
-function OrderPage({ location }) {
+function OrderPage() {
  
-  const selectedFood = location && location.state ? location.state.selectedFood : null;
+  
 
   return (
     <section>
       <div>
+        <div className="aciklama">
         <div className="logo-footer">
           <img src={Logo} alt="Logo" />
         </div>
@@ -23,12 +24,23 @@ function OrderPage({ location }) {
           <Link className="order-navbar-link" to="/Secenekler">- Seçenekler -</Link>
           <Link className="order-navbar-link" to="/OrderPage">Sipariş Oluştur</Link>
         </div>
-        {selectedFood && ( 
-          <div>
-            <h1>{selectedFood.isim}</h1>
-            <p>{selectedFood.aciklama}</p>
+        
+          <div className="information">
+            <b>Position Absolute Acı Pizza</b>
+            <div className="fiyat">
+            <h4>85 TL</h4> <p>4.9</p> <p>(200)</p>
+            </div>
+        <p>
+          Frontent Dev olarak hala position:absolute kullanıyorsan bu çok aci
+          pizza tam sana göre. Pizza, domates, peynir ve genellikle çeşitli
+          diğer malzemelerle kaplanmış, daha sonra geleneksel olarak odun
+          ateşinde bir fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak,
+          düzleştirilmiş mayali buğday bazlı hamurdan oluşan İtalyan kökenli
+          lezzetli bir yemektir. Küçük bir pizzaya bazen pizzetta denir.
+        </p>
           </div>
-        )}
+        
+      </div>
       </div>
       <div>
         <Order />

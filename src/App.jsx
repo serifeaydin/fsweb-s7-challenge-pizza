@@ -1,34 +1,35 @@
 import React from 'react'
 import './App.css'
-
-import {BrowserRouter, Route,Switch} from 'react-router-dom';
+import { createBrowserHistory } from "history";
+import { Router, Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import OrderPage from './pages/OrderPage';
-import SuccessPage from './pages/SuccessPage';
-import { useEffect } from 'react';
+import OrderReceivedPage from './pages/OrderReceivedPage';
 
+const history = createBrowserHistory();
 
-
-function App() {
-  useEffect(()=>{},[]);
-
-  
+const App = () => {
+  const handlePageChange = (activePage) => {
+    history.push(activePage);
+  }
 
   return (
     <div className='App'>
-    
-
-<Switch>
-  <Route path="/" exact ><HomePage/></Route>
-  <Route path="/OrderPage"  exact ><OrderPage/></Route>
-  <Route path="/SuccessPage"  exact ><SuccessPage/></Route>
-</Switch>
-
- 
- 
+      <Router history={history}>
+        <Switch>
+          <Route path="/" exact>
+            <HomePage onChange={handlePageChange} />
+          </Route>
+          <Route path="/OrderPage" exact>
+            <OrderPage onChange={handlePageChange} />
+          </Route>
+          <Route path="/Order-received" exact>
+            <OrderReceivedPage onChange={handlePageChange} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
-    
-  
-}            
+}
+
 export default App;

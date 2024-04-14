@@ -2,7 +2,7 @@
 /*ana sayfa css*/
  .home{
   width:1350px;
-  height:100vh;
+  height:130vh;
   display:flex;
   flex-direction: column;
   padding-top: 3rem;
@@ -19,7 +19,9 @@
   color:white;
   font-size: 30px;
   margin-top:0.2rem;
-  font-family:"Courier New", Courier, monospace;}
+  font-family: "Barlow", sans-serif;
+  }
+
 .buton{
   color: black;
   background-color: yellow;
@@ -36,7 +38,8 @@
   
 }
 .slogan{
-  font-family:"Brush Script MT", cursive;
+  padding-top: 3rem;
+  font-family: "Satisfy", cursive;
   font-style:oblique;
   color:yellow;
   font-size: 25px;
@@ -48,22 +51,24 @@
   height: 8vh;
 display: flex;
 justify-content: center;
-margin:1rem;
+margin-top: 2rem;
+
 }
 .first-icons{
-  padding-left:0.5rem;
-  padding-right:0.5rem ;
+  padding-left:1.5rem;
+  padding-right:1.5rem ;
   color: black;
 }
 
 .sipariş{
  width: 80%;
- height:60vh;
-display:flex;
+ height:80vh;
+display: flex;
 margin: auto;
-
+padding-top: 4rem;
 
 }
+
 
 .left{
  width: 50%;
@@ -71,8 +76,10 @@ margin: auto;
   background-position: left;
   background-repeat: no-repeat;
   border-radius: 10px;
-  padding-left: 2rem;
+  padding-left: 2rem;background-color: beige;
+  padding-top: 4rem;
 }
+
 .left p{
   font-size: 20px;
   color:white
@@ -85,15 +92,20 @@ margin: auto;
   width: 50%;
   display: flex;
   flex-direction: column;
+ 
   
   }
 .burger{
   border-radius: 10px;
   margin-left: 2rem;
-  height: 30vh;
+  height: 33vh;
   background-size: cover;
   padding-left: 1rem;
+  padding-top: 2rem;
+  margin-bottom: 1rem;
+  
 }
+
 .burger h2{
   color:white;
   font-size:large;
@@ -102,9 +114,11 @@ margin: auto;
 .kurye{
   border-radius: 10px;
   margin-left: 2rem;
-  height: 30vh;
+  height: 33vh;
   background-size: cover;
   padding-left: 1rem;
+  padding-top: 2rem;
+  
 }
 
 .siparişButonu{
@@ -122,6 +136,12 @@ margin: auto;
   justify-content: center;
   text-align: center;
   margin: auto;
+}
+.kirmizi{
+  font-family: "Satisfy", cursive;
+  color: red;
+  font-size: 30px;
+  padding-top: 4rem;
 }
 .foods{
   display: flex;
@@ -185,7 +205,7 @@ background-color: black;
   padding-right: 1rem;
 }
 .leftSide{
-  padding-left: 5rem;
+  padding-left: 10rem;
   color:white;
   width: 40%;
 }
@@ -196,23 +216,42 @@ background-color: black;
 .middle{
   color:white;
   width: 40%;
+  
+  font-size:smaller;
+}
+.middle h3{
+  font-size:20px;
+  margin-top: 2rem;
+}
+.middle p{
+  margin:4px;
+  margin-top: 6px;
 }
 .rightSide{
   color:white;
   width: 30%;
-  padding-right: 0;
+  padding-right: 8rem;
+  margin-top: 2rem;
+  
 }
 .rightSide img{
 width: 30%;
+
 }
 .footer p{
   justify-content: left;
   text-align: left;
 
+
 }
 
 
 /*orderpage css */
+.aciklama{
+  background-color: beige;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
 .logo-footer{
   flex-direction: column;
  text-align: center;
@@ -241,4 +280,128 @@ width: 30%;
  color:black;
   padding-right: 0.5rem;
 
+}
+.information{
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+ padding-left:400px;
+  text-align: left;
+
+}
+
+  .fiyat{
+    display:flex;
+   justify-content:space-between;
+  }
+  
+
+.selection {
+ display: flex;
+justify-content: center;
+width: 100%;
+}
+  
+.boyut{
+  display: flex;
+  flex-direction: row;
+ padding: auto;
+
+
+}
+.hamur{
+  display: flex;
+  flex-direction: row;
+ 
+  padding: auto;
+}
+
+.malzeme{
+display: flex;
+width: 500px;
+justify-items:center;
+align-items: center;
+}
+.mb-3{
+ 
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+justify-items:center;
+ text-align:left;
+ width: 100%;
+ 
+}
+.btn-warning{
+  display: flex;
+ justify-content:center;
+}
+.toplam{
+  color: red;
+ }
+ 
+ 
+
+
+
+/*OrderReceivedPage css*/
+
+
+.last-page{
+  display: flex;
+  flex-direction: column;
+  
+align-items: center;
+ 
+background-color:#CE2829;
+background-size:cover;
+width: 1300px;
+ height:100vh;
+margin-left:2rem;
+padding-top: 2rem;
+
+
+}
+.order{
+  width: 500px;
+  border-bottom: 2px solid white;
+ display: flex;
+ flex-direction: column;
+ justify-items: center;
+}
+.order img{
+font-size: smaller;
+
+ 
+ 
+ 
+}
+.order p{
+  font-family: "Satisfy", cursive;
+  font-style:oblique;
+  color: yellow;
+  font-size: x-large;
+  padding-top: 3rem;
+  text-align: center;
+}
+.order h1{
+
+  font-family: "Barlow", sans-serif;
+ text-align: center;
+  color: white;
+}
+.order-summary{
+  text-align: center;
+  align-content:  center;
+  padding-top: 0.5rem;
+ 
+  color:white;
+ font-size: medium;
+}
+.price{
+  border:2px solid white;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  color:white;
+  font-size: medium;
 }

@@ -73,7 +73,7 @@ function MainPage(){
              </div>
             </div>
          <div className="last-section">
-            <p>en çok paketlenen menüler</p>
+            <p className="kirmizi">en çok paketlenen menüler</p>
             <h2>Acıktıran Kodlara Doyuran Lezzetler</h2>
           <div className="last-icons">
         <Link className="last-icons" to="/OrderPage"><button className="icon-buttons"><img src={Yeni}/>Ramen</button></Link>

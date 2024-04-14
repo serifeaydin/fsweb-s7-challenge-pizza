@@ -19,31 +19,31 @@ function Footer(){
         <div className="footer">
            <div className="leftSide">
            <img src={LogoFooter}/>
-            <div>
+            <div><br/>
             <img src={Adress}/>
-           341 Londonderry Road <br/>Istanbul Türkiye
-            </div>
+           341 Londonderry Road <br/>Istanbul Türkiye 
+            </div><br/>
             <div>
             <img src={Mail}/>
             aciktim@teknolojikyemekler.com
-            </div>
+            </div><br/>
             <div>
             <img src={Telephone}/>
            +90212 65 12 32
             </div>
             </div>
             <div className="middle">
-             <h2>Sıcacık Menüler</h2> 
-             <Link to="/">Terminal Pizza</Link> <br/>
-             <Link to="/">5 Kişilik Hackatlon Pizza</Link> <br/>
-             <Link to="/">5 Kişilik Hackatlon Pizza</Link> <br/>
-             <Link to="/">useEffect Tavuklu Pizza</Link> <br/>
-             <Link to="/">Beyaz Console Frosty </Link> <br/>
-             <Link to="/">Testler Geçti Mutlu Burger </Link> <br/>
-             <Link to="/">Position Absolute Acı Burger </Link> 
+             <h3>Sıcacık Menüler</h3> 
+             <p>Terminal Pizza</p> 
+             <p>5 Kişilik Hackatlon Pizza</p>
+             <p>5 Kişilik Hackatlon Pizza</p> 
+             <p>useEffect Tavuklu Pizza</p> 
+             <p>Beyaz Console Frosty </p> 
+             <p>Testler Geçti Mutlu Burger </p>
+             <p>Position Absolute Acı Burger </p> 
             </div>
           <div className="rightSide">Instagram 
-          <div >
+          <div>
           <img src={Insta1}/>
           <img src={Insta2}/>
           <img src={Insta3}/>
@@ -51,8 +51,9 @@ function Footer(){
           <img src={Insta5}/>
           <img src={Insta6}/>
           </div>
-          </div>
-         <br/>2023 Teknolojik Yemekler.
+          </div><br/>
+         
+         
 
 </div>
 
