@@ -29,7 +29,8 @@ const Order = () => {
   
 
   const [form, setForm] = useState(initialForm);
- 
+
+  
   const ingredients = [
     { value: "pepperoni", label: "Pepperoni" },
     { value: "mushrooms", label: "Mushrooms" },
@@ -184,6 +185,7 @@ const Order = () => {
     }
   };
 
+ 
 
   return (
     <>
@@ -297,7 +299,7 @@ const Order = () => {
             <p className="toplam">Toplam: {calculateTotal()} TL</p>
           </FormGroup>
           <div className="btn-warning">
-            <Button
+            <Button 
               color="warning"
               type="submit"
               name="submit-btn"
