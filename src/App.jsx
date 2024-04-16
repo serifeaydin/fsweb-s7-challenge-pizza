@@ -5,6 +5,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import OrderPage from './pages/OrderPage';
 import OrderReceivedPage from './pages/OrderReceivedPage';
+import { useEffect } from 'react';
 
 const history = createBrowserHistory();
 
@@ -12,6 +13,11 @@ const App = () => {
   const handlePageChange = (activePage) => {
     history.push(activePage);
   }
+  useEffect(() => {
+    // component did mount
+    // tüm uygulama yüklendi
+   handlePageChange();
+  }, []);
 
   return (
     <div className='App'>

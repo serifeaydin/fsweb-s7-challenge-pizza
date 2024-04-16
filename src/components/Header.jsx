@@ -12,7 +12,7 @@ function Header(){
         <div className="home"   style={{
             backgroundImage: `url(${Background})`,
           }}>
-        <img classname="logo"src={Logo}/>
+        <img className="logo"src={Logo}/>
         <p className="slogan">fırsatı kaçırma</p>
         <p className="text">KOD ACIKTIRIR <br/> PİZZA,DOYURUR</p>
       <Link className="aciktimButonu" to="/OrderPage">ACIKTIM </Link>
