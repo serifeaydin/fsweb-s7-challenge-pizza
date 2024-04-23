@@ -4,8 +4,10 @@ import { useLocation } from "react-router-dom";
 
 function Success() {
   const location = useLocation();
-  const { orderData ,selectionTotal, total } = location.state;
-
+  const formData = location.state.formData;
+  const total = location.state.total;
+  const selectionTotal = location.state.selectionTotal;
+  console.log(selectionTotal);
   return (
     <div className="last-page">
       <div className="order">
@@ -14,14 +16,15 @@ function Success() {
       <h1>SİPARİŞ ALINDI</h1>
       </div>
       <div className="order-summary">
-      <h4>{orderData.name}</h4>
-      <p>Boyut:{orderData.size}</p>
-      <p>Hamur: {orderData.dough}</p>
-      <p>Ek Malzemeler: {orderData.ingredients.join(", ")}</p>
+      <h4>{formData.name}</h4>
+      <p>Boyut:{formData.boyut}</p>
+      <p>Hamur:{formData.select}</p>
+      <p>Ek Malzemeler: {formData.ingredients.join(", ")}</p>
       </div>
       <div className="price">
         <p>Sipariş Toplamı</p>
-      <p>Seçimler: {selectionTotal} TL</p>
+       
+      <p>Seçimler: {selectionTotal}TL</p>
       <p>Toplam: {total} TL</p>
       </div>
     </div>

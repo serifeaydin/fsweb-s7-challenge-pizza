@@ -319,14 +319,29 @@ width: 30%;
 justify-content: center;
 width: 100%;
 }
-  
-.boyut{
-  display: flex;
-  flex-direction: row;
- padding: auto;
+  .boyut{
+    display: flex;
+    margin-right: 2rem;
+   
+  }
+.boyut label{
+  display:inline-block;
+  width:50px;
+  padding: 10px;
+  border:solid 2px gray;
+  transition: all 0.3s;
+  border-radius: 2rem;
 
 
 }
+.boyut input[type="radio"]{
+  display: none;
+}
+.boyut input[type="radio"]:checked+label {
+  border: solid 2px black;
+background-color: rgb(151, 144, 144);}
+
+
 .hamur{
   display: flex;
   flex-direction: row;

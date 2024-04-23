@@ -4,33 +4,34 @@ import { useHistory } from 'react-router-dom';
 import {
   Col,
   Button,
-  ButtonGroup,
-  CardGroup,
   Form,
   FormGroup,
-  FormText,
   Input,
   Label,
   Row,
+  CardGroup,
+  FormText,
 } from "reactstrap";
 
 
 
 
 const Order = () => {
-  const history = useHistory();
+  
   const initialForm = {
-    name: "",
+    name: "Position Absolute Acı Pizza",
     size: "",
     ingredients: [],
     note: "",
-    dough:[],
+    dough: "",
+    quantity: 0,
   };
-  
 
-  const [form, setForm] = useState(initialForm);
+  const [formData, setFormData] = useState(initialForm);
+  const [quantity, setQuantity] = useState(1);
+ 
+  const history = useHistory();
 
-  
   const ingredients = [
     { value: "pepperoni", label: "Pepperoni" },
     { value: "mushrooms", label: "Mushrooms" },
@@ -67,251 +68,237 @@ const Order = () => {
   
   
 
-  //pizza adeti belirleme
-
-  const [quantity, setQuantity] = useState(1);
-
-  const handleButtonClick = (event) => {
-    const { name } = event.target;
-    if (name === "minus") {
-      if (quantity > 1) setQuantity(quantity - 1);
-    } else if (name === "plus") {
-      setQuantity(quantity + 1);
-    }
-  };
-
-  //ek malzeme seçimi
-
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const maxIngredientSelection = 10;
-
-  const handleIngredientChange = (event) => {
-    const ingredient = event.target.value;
-    if (event.target.checked) {
-      if (selectedIngredients.length < maxIngredientSelection) {
-        setSelectedIngredients((prevIngredients) => [
-          ...prevIngredients,
-          ingredient,
-        ]);
-      } else {
-        alert("Please select maximum of 10 ingredients.");
-      }
-    } else {
-      setSelectedIngredients((prevIngredients) =>
-        prevIngredients.filter((item) => item !== ingredient)
-      );
-    }
-  };
-
-  
-//toplam ücreti hesapla
-    
-  const calculateTotal = () => {
-    let total = quantity * 85;
-    selectedIngredients.forEach((ingredient) => {
-      total += ingredientPrices[ingredient] * quantity;
-    });
-    return total;
-  };
-//seçilenler için ücret hesapla
-
-   const [quantitySelections, setQuantitySelections] = useState(0);
  
-    const calculateSelections = () => {
-    let selectionTotal = quantitySelections * 5;
-    selectedIngredients.forEach((ingredient) => {
-      selectionTotal += ingredientPrices[ingredient] * quantity;
-    });
-    return selectionTotal;
-  };
 
+ 
   
-//boyutu seçili mi
-  const [selectedSize, setSelectedSize] = useState(null);
-
-  const onCheckboxBtnClick = (size) => {
-    if (selectedSize === size) {
-      setSelectedSize(null);
+ 
+  const handleInputChange = (e) => {
+    const { name, value, checked } = e.target;
+    if (e.target.type === "checkbox") {
+      const ingredients = [...formData.ingredients];
+      if (checked) {
+        ingredients.push(value);
+      } else {
+        const index = ingredients.indexOf(value);
+        ingredients.splice(index, 1);
+      }
+      setFormData((prevData) => ({
+        ...prevData,
+        ingredients,
+      }));
     } else {
-      setSelectedSize(size);
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
     }
   };
 
-  //hamur tipini seç
-  const [dough, setDough] = useState(""); // 1. Adım: hamur tipini tutacak state
 
-  const handleDoughChange = (event) => {
-    setDough(event.target.value); // 2. Adım: hamur tipi seçimi değiştiğinde state'i güncelle
+  
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
   };
 
-  const handleSubmit = async (event) => {
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+ //toplam ücreti hesapla
+     
+ const calculateTotal = () => {
+  let total = quantity * 85;
+  formData.ingredients.forEach((ingredient) => {
+    total += ingredientPrices[ingredient] * quantity;
+  });
+  return total;
+};
+ //seçilenler için ücret hesapla
+ 
+ const calculateSelections = () => {
+  let selectionTotal = formData.ingredients.length * 5;
+  formData.ingredients.forEach((ingredient) => {
+    selectionTotal += ingredientPrices[ingredient] * (quantity-1);
+  });
+  return selectionTotal;
+};
+
+ 
+ 
+   //hamur tipini seç
+   
+
+
+   
+   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Sipariş bilgilerini hazırla
-    const orderData = {
-      name: "Position Absolute Acı Pizza",
-      size: selectedSize,
-      dough:dough,
-      ingredients: selectedIngredients,
-      note: form.note || "", 
-    };
-    // Formu doldurulmuş mu kontrol et
-    if (!selectedSize || selectedIngredients.length === 0) {
+
+    // Form validation
+    if (formData.ingredients.length === 0) {
       alert("Please select size and at least one ingredient!");
       return;
     }
 
-    
-    
-    
+    // Calculate total price
     const total = calculateTotal();
-    const selectionTotal = calculateSelections();
-    
-    try {
-      // Axios ile POST request gönder
-      const response = await axios.post("https://reqres.in/api/pizza", orderData);
-      // Response'u konsola yazdır
-      console.log("Response:", response.data);
-      // Sipariş özetini konsola yazdır
-      console.log("Order Summary:", orderData);
-      // Sipariş alındı sayfasına yönlendirme yap
-      
-      // Sipariş alındı sayfasına yönlendirme yap
-      history.push({
-        pathname: "/order-received",
-        state: { orderData, selectionTotal, total},
-      });
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    const selectionTotal= calculateSelections();
+    // Send POST request
+    axios.post("https://reqres.in/api/pizza", formData)
+      .then((res) => {
+        console.log(res.data);
+        // Redirect to order received page
+        history.push({
+          pathname: "/Order-received",
+          state: { 
+            formData: formData,
+            total: calculateTotal(),
+            selectionTotal: calculateSelections()
+          },
+        })
+      })
+      .catch((error) => console.error(error));
   };
 
- 
-
-  return (
-    <>
-      <div>
-        <Form>
-          <div className="selection">
-            <div className="boyut">
-              <b>Boyut Seç</b>
-              <div>
-                <ButtonGroup>
-                  <Button
-                    color="secondary"
-                    onClick={() => onCheckboxBtnClick("S")}
-                    active={selectedSize === "S"}
-                  >
-                    S
-                  </Button>
-                  <Button
-                    color="secondary"
-                    onClick={() => onCheckboxBtnClick("M")}
-                    active={selectedSize === "M"}
-                  >
-                    M
-                  </Button>
-                  <Button
-                    color="secondary"
-                    onClick={() => onCheckboxBtnClick("L")}
-                    active={selectedSize === "L"}
-                  >
-                    L
-                  </Button>
-                </ButtonGroup>
-              </div>
-              <div className="hamur">
-                <Label for="exampleSelect">
-                  <b>Hamur Seç</b>
-                </Label>
-               <Input id="exampleSelect" name="select" type="select" onChange={handleDoughChange}>
-               <option>Hamur Kalınlığı Seçin</option>
-                <option>İnce</option>
-                <option>Normal</option>
-                <option>Kalın</option>
-</Input>
-              </div>
-            </div>
-          </div>
-          <FormGroup>
-            <div className="secim">
-              <Label>
-                <b>Ek Malzemeler</b>
-              </Label>
-              <p>En fazla 10 Malzeme Seçebilirsiniz. 5 tl</p>
-              <Row className="malzeme">
-                {ingredients.map((ingredient, index) => (
-                  <Col md={4} key={index}>
-                    <FormGroup check>
-                      <Label check>
-                        <Input
-                          type="checkbox"
-                          value={ingredient.value}
-                          onChange={handleIngredientChange}
-                        />
-                        {ingredient.label}
-                      </Label>
-                    </FormGroup>
-                  </Col>
-                ))}
-              </Row>
-            </div>
-          </FormGroup>
-          <FormGroup>
-            <div className="order-note">
-              <Label>
-                <b>Sipariş Notu</b>
-              </Label>
-              <p>Siparişine eklemek istediğin bir not var mı?</p>
-              <Input
-                name="note"
-                type="textarea"
-                value={form.note}
-                onChange={(e) => setForm({ ...form, note: e.target.value })}
+  
+  
+   return (
+     <>
+       <div>
+         <Form onSubmit={handleSubmit}>
+           <div className="selection">
+             <div className="boyut">
+               <b>Boyut Seç</b>
+               
+              <input
+              id="small"
+                name="boyut"
+                type="radio"
+                value="S"
+                onChange={handleInputChange}
               />
+              <label for="small">
+              S
+            </label>
+           
+              <input
+                id="medium"
+                name="boyut"
+                type="radio"
+                value="M"
+                onChange={handleInputChange}
+              />
+               <label for="medium"> 
+              M
+            </label>
+            
+              <input
+              id="large"
+                name="boyut"
+                type="radio"
+                value="L"
+                onChange={handleInputChange}
+              />
+              <label for="large">
+              L
+            </label>
             </div>
-          </FormGroup>
-          <FormGroup className="quantity-group">
-            <CardGroup>
-              <Button
-                type="button"
-                name="minus"
-                color="warning"
-                onClick={handleButtonClick}
-              >
-                -
-              </Button>
-              <FormText>{quantity}</FormText>
-              <Button
-                type="button"
-                name="plus"
-                color="warning"
-                onClick={handleButtonClick}
-              >
-                +
-              </Button>
-            </CardGroup>
-          </FormGroup>
-          <FormGroup>
-            <Label>
-              <b>Sipariş Toplamı</b>
-            </Label>
-            <p>Seçimler: {calculateSelections()} TL</p>
-            <p className="toplam">Toplam: {calculateTotal()} TL</p>
-          </FormGroup>
-          <div className="btn-warning">
-            <Button 
-              color="warning"
-              type="submit"
-              name="submit-btn"
-              onClick={handleSubmit}
-            >
-              Sipariş Ver
-            </Button>
-          </div>
-        </Form>
-      </div>
-    </>
-  );
-}
-
-export default Order;
+               <div className="hamur">
+                 <Label for="exampleSelect">
+                   <b>Hamur Seç</b>
+                 </Label>
+                <Input id="exampleSelect" name="select" type="select" onChange={handleInputChange}>
+                <option>Hamur Kalınlığı Seçin</option>
+                 <option>İnce</option>
+                 <option>Normal</option>
+                 <option>Kalın</option>
+ </Input>
+               </div>
+             
+           </div>
+           <FormGroup>
+             <div className="secim">
+               <Label>
+                 <b>Ek Malzemeler</b>
+               </Label>
+               <p>En fazla 10 Malzeme Seçebilirsiniz. 5 tl</p>
+               <Row className="malzeme">
+                 {ingredients.map((ingredient, index) => (
+                   <Col md={4} key={index}>
+                     <FormGroup check>
+                       <Label check>
+                         <Input
+                           type="checkbox"
+                           value={ingredient.value}
+                           onChange={handleInputChange}
+                         />
+                         {ingredient.label}
+                       </Label>
+                     </FormGroup>
+                   </Col>
+                 ))}
+               </Row>
+             </div>
+           </FormGroup>
+           <FormGroup>
+             <div className="order-note">
+               <Label>
+                 <b>Sipariş Notu</b>
+               </Label>
+               <p>Siparişine eklemek istediğin bir not var mı?</p>
+               <Input
+                 name="note"
+                 type="textarea"
+                 value={formData.note}
+                 onChange={handleInputChange}
+               />
+             </div>
+           </FormGroup>
+           <FormGroup className="quantity-group">
+             <CardGroup>
+               <Button
+                 type="button"
+                 name="minus"
+                 color="warning"
+                 onClick={decreaseQuantity}
+               >
+                 -
+               </Button>
+               <FormText>{quantity}</FormText>
+               <Button
+                 type="button"
+                 name="plus"
+                 color="warning"
+                 onClick={increaseQuantity}
+               >
+                 +
+               </Button>
+             </CardGroup>
+           </FormGroup>
+           <FormGroup>
+             <Label>
+               <b>Sipariş Toplamı</b>
+             </Label>
+             <p>Seçimler: {calculateSelections()} TL</p>
+             <p className="toplam">Toplam: {calculateTotal()} TL</p>
+           </FormGroup>
+           <div className="btn-warning">
+             <Button 
+               color="warning"
+               type="submit"
+               name="submit-btn"
+               onClick={handleSubmit}
+             >
+               Sipariş Ver
+             </Button>
+           </div>
+         </Form>
+       </div>
+     </>
+   );
+ }
+ 
+ export default Order;

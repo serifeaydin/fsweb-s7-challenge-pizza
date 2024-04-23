@@ -1,6 +1,6 @@
 import React from "react";
 import Background from '../assets/home-banner.png';
-import { Link,Router,Route} from "react-router-dom";
+import { Link} from "react-router-dom";
 import Logo from "../assets/logo.svg";
 
 
